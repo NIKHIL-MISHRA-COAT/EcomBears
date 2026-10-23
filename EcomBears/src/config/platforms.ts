@@ -56,15 +56,17 @@ export const PLATFORMS: PlatformConfig[] = [
 
 
   { id: 'meesho', name: 'Meesho', tagline: 'Valmo label above the tax invoice', pages: 'all',
-    crop: { x: 0.011, y: 0.008, w: 0.978, h: 0.555 },
+    crop: { x: 0.011, y: 0.008, w: 0.978, h: 0.555 }, useSaved: true,
     always: ['Sort', 'Output', 'Download'] },
 
   { id: 'flipkart', name: 'Flipkart', tagline: 'Main shipment label', pages: 'all',
     crop: { x: 0.294, y: 0.015, w: 0.412, h: 0.444 }, useSaved: true,
     always: ['Sort', 'Output', 'Download'] },
   { id: 'myntra', name: 'Myntra', tagline: 'Learns the size after the first label', pages: 'all',
+    crop: { x: 0.294, y: 0.015, w: 0.412, h: 0.444 }, useSaved: true,
     always: ['Sort', 'Output', 'Download'] },
   { id: 'snapdeal', name: 'Snapdeal', tagline: 'Learns the size after the first label', pages: 'all',
+    crop: { x: 0.294, y: 0.015, w: 0.412, h: 0.444 }, useSaved: true,
     always: ['Sort', 'Output', 'Download'] },
 ];
 
