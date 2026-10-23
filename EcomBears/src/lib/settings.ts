@@ -19,8 +19,6 @@ export type Store = {
   profiles: Record<PlatformId, Profile>;
 };
 
-const KEY = 'labelCropper.react.v1';
-
 export function initialProfile(id: PlatformId): Profile {
   const cfg = PLATFORMS.find(p => p.id === id)!;
   return {
@@ -40,26 +38,11 @@ export function defaultStore(): Store {
   return { platform: 'auto', autoCrop: true, sortOn: false, sortBy: 'sku', sortDir: 'asc', profiles };
 }
 
+// Settings are not stored in the browser. Every page load starts from the values in
+// src/config/platforms.ts, and changes last only until the page is reloaded.
 export function loadStore(): Store {
-  const base = defaultStore();
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return base;
-    const saved = JSON.parse(raw) as Partial<Store>;
-    return {
-      ...base,
-      ...saved,
-      profiles: { ...base.profiles, ...(saved.profiles ?? {}) } as Record<PlatformId, Profile>,
-    };
-  } catch {
-    return base;
-  }
+  return defaultStore();
 }
 
-export function saveStore(s: Store) {
-  try {
-    localStorage.setItem(KEY, JSON.stringify(s));
-  } catch {
-    /* storage blocked: settings last for this visit only */
-  }
-}
+// No-op: nothing is written to localStorage.
+export function saveStore(_s: Store) {}
