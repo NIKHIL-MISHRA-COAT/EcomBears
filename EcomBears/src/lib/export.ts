@@ -126,7 +126,7 @@ export async function exportOriginalPdf(
   }
 
   const bytes = await out.save();
-  downloadBlob(new Blob([bytes], { type: 'application/pdf' }), filename);
+  downloadBlob(new Blob([new Uint8Array(bytes)], { type: 'application/pdf' }), filename);
 }
 
 /** PNG files: one label downloads as a single file, several labels as a ZIP. */
