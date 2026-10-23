@@ -5,6 +5,24 @@ import JSZip from 'jszip';
 import { SIZES, type SizeKey } from './renderer';
 import type { Rect } from './detect';
 
+// Short codes used in download names, e.g. fk-23-oct-2026.pdf
+const PLATFORM_CODE: Record<string, string> = {
+  amazon: 'az',
+  flipkart: 'fk',
+  meesho: 'ms',
+  myntra: 'my',
+  snapdeal: 'sd',
+  auto: 'pt',
+};
+
+/** "<platform code>-<dd>-<mon>-<yyyy>.pdf", e.g. fk-23-oct-2026.pdf */
+export function pdfFileName(platform: string, date = new Date()): string {
+  const code = PLATFORM_CODE[platform] ?? 'ot';
+  const dd = String(date.getDate()).padStart(2, '0');
+  const mon = date.toLocaleString('en-GB', { month: 'short' }).toLowerCase();
+  return `${code}-${dd}-${mon}-${date.getFullYear()}.pdf`;
+}
+
 export type ExportLabel = {
   fileId: number;
   fileName?: string;

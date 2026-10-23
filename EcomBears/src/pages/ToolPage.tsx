@@ -8,7 +8,7 @@ import { PLATFORMS, type Crop, type Options, type PlatformId } from '../config/p
 import { loadStore, saveStore, type Profile, type Store } from '../lib/settings';
 import { renderPage, RENDER_SCALE } from '../lib/pdfLoader';
 import { detectLabel } from '../lib/detect';
-import { exportSizedPdf, exportOriginalPdf, exportPngZip, type ExportLabel } from '../lib/export';
+import { exportSizedPdf, exportOriginalPdf, exportPngZip, pdfFileName, type ExportLabel } from '../lib/export';
 import {
   fracToRect, rectToFrac, processFiles, repaint, sortLabels,
   type FileEntry, type Label,
@@ -287,10 +287,10 @@ export default function ToolPage() {
             return f.file.arrayBuffer();
           },
           RENDER_SCALE,
-          'labels_original_size.pdf',
+          pdfFileName(store.platform),
         );
       } else {
-        exportSizedPdf(view.map(l => l.canvas), o.out, `thermal_labels_${o.out}.pdf`);
+        exportSizedPdf(view.map(l => l.canvas), o.out, pdfFileName(store.platform));
       }
       setToast({ kind: 'ok', text: 'PDF downloaded' });
     } catch (err) {

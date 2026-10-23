@@ -56,6 +56,7 @@ export const PLATFORMS: PlatformConfig[] = [
 
 
   { id: 'meesho', name: 'Meesho', tagline: 'Valmo label above the tax invoice', pages: 'all',
+    crop: { x: 0.011, y: 0.008, w: 0.978, h: 0.555 },
     always: ['Sort', 'Output', 'Download'] },
 
   { id: 'flipkart', name: 'Flipkart', tagline: 'Main shipment label', pages: 'all',
